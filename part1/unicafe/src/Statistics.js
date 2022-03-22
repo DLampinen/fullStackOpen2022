@@ -1,20 +1,16 @@
-// eslint-disable-next-line
-const StatisticLine = ({text, value, symbol}) => {
-  return (
-    <table>
-      <tbody>
-        <tr>
-          <td style={{ width: '60px' }}>{text}</td>
-          <td>
-            {value} {symbol}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  );
-};
+const StatisticLine = ({ text, value, symbol }) => (
+  <table>
+    <tbody>
+      <tr>
+        <td style={{ width: '60px' }}>{text}</td>
+        <td>
+          {value} {symbol}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+);
 
-// eslint-disable-next-line
 const Statistics = ({ good, bad, neutral }) => {
   if (good + bad + neutral === 0) {
     return (

@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 const Button = ({ text, onClick }) => (
   <button type="submit" onClick={onClick}>
     {text}
