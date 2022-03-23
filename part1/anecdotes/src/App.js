@@ -13,15 +13,38 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
+  const zeroArray = new Array(anecdotes.length).fill(0);
+  const [vote, setVote] = useState(zeroArray);
 
-  const handleClick = () => {
+  const handleRandomClick = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length));
+  };
+
+  const handleVoteClick = () => {
+    const copyVote = [...vote]; // make a copy of state array
+    copyVote[selected] += 1;
+    setVote(copyVote); // update state array
+    console.log('Copy of state array is now:', copyVote);
+  };
+
+  // find the anecdote with the most votes and return the index
+  const findMostVotes = () => {
+    const max = Math.max(...vote);
+    return vote.indexOf(max);
   };
 
   return (
     <div>
-      <p>{anecdotes[selected]}</p>
-      <Button onClick={handleClick} text="next anecdote" />
+      <h2>Anecdote of the day</h2>
+      <p>
+        {anecdotes[selected]} <br /> has {vote[selected]} votes
+      </p>
+      <Button onClick={handleVoteClick} text="vote" />
+      <Button onClick={handleRandomClick} text="next anecdote" />
+      <h2>Anecdote with the most votes</h2>
+      <p>
+        {anecdotes[findMostVotes()]} <br /> has {vote[findMostVotes()]} votes
+      </p>
     </div>
   );
 };
