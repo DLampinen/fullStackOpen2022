@@ -4,6 +4,7 @@ const Course = ({ course }) => {
     <>
       <Header course={course.name} />
       <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </>
   );
 };
@@ -24,5 +25,12 @@ const Content = ({ parts }) => (
     ))}
   </>
 );
+
+const Total = ({ parts }) => {
+  const sumOfExercises = parts.reduce((acc, curr) => acc + curr.exercises, 0);
+  return (
+    <p style={{ fontWeight: 'bold' }}>total of {sumOfExercises} exercises</p>
+  );
+};
 
 export default Course;
