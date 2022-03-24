@@ -1,16 +1,21 @@
-/* eslint-disable */
-const Course = ({ course }) => {
-  return (
-    <>
-      <Header course={course.name} />
-      <Content parts={course.parts} />
-      <Total parts={course.parts} />
-    </>
-  );
-};
-/* eslint-enable */
-// eslint-disable-next-line
-const Header = ({ course }) => <h1>{course}</h1>;
+const Course = ({ courses }) => (
+  <>
+    <h2>Web development curriculum</h2>
+    {courses.map((course) => (
+      <CourseInfo key={course.id} course={course} />
+    ))}
+  </>
+);
+
+const CourseInfo = ({ course }) => (
+  <>
+    <Header course={course.name} />
+    <Content parts={course.parts} />
+    <Total parts={course.parts} />
+  </>
+);
+
+const Header = ({ course }) => <h3>{course}</h3>;
 
 const Part = ({ part }) => (
   <p>
