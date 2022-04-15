@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const FilterSearch = ({ text, value, onChange }) => (
   <div>
     {text} <input value={value} onChange={onChange} />
