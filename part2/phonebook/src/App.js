@@ -28,7 +28,31 @@ const App = () => {
     );
 
     if (checkIfUnique === true) {
-      alert(`${newName} is already added to phonebook`);
+      if (
+        window.confirm(
+          `${personObject.name} is already added to the phonebook, replace the old number with a new one?`
+        ) === true
+      ) {
+        // need to find the id for the existing object
+        const updatedObjectWithId = persons.find(
+          (person) =>
+            person.name.toLowerCase() === personObject.name.toLowerCase()
+        );
+        // Update the new number
+        updatedObjectWithId.number = personObject.number;
+        // Update the list with numbers. The new number comes last.
+        personService
+          .update(updatedObjectWithId.id, updatedObjectWithId)
+          .then((returnedPerson) => {
+            setPersons(
+              persons
+                .filter((person) => person.name !== updatedObjectWithId.name)
+                .concat(returnedPerson)
+            );
+            setNewName('');
+            setNewNumber('');
+          });
+      }
     } else {
       personService.create(personObject).then((returnedPerson) => {
         setPersons(persons.concat(returnedPerson));
@@ -43,12 +67,6 @@ const App = () => {
     if (window.confirm(`Delete ${name}?`) === true) {
       personService.remove(id);
       setPersons(persons.filter((person) => person.id !== id));
-    }
-  };
-
-  const updateNumber = () => {
-    if (window.confirm(`Lalalala`) === true) {
-      console.log(`blablabla`);
     }
   };
 
