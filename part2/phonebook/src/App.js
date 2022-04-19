@@ -55,17 +55,26 @@ const App = () => {
             setTimeout(() => {
               setMessage(null);
             }, 4000);
-            setNewName('');
-            setNewNumber('');
+          })
+          .catch((error) => {
+            setMessage(
+              `Information of ${updatedObjectWithId.name} was already removed from server`
+            );
+            setTimeout(() => {
+              setMessage(null);
+            }, 4000);
           });
       }
+      // empty the input fields
+      setNewName('');
+      setNewNumber('');
     } else {
       personService.create(personObject).then((returnedPerson) => {
         setPersons(persons.concat(returnedPerson));
         setMessage(`Added ${returnedPerson.name} successfully`);
         setTimeout(() => {
           setMessage(null);
-        }, 5000);
+        }, 4000);
         setNewName('');
         setNewNumber('');
       });
