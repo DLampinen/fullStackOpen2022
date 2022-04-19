@@ -78,7 +78,6 @@ const App = () => {
         setNewName('');
         setNewNumber('');
       });
-      // setPersons(persons.concat(personObject));
     }
   };
 
